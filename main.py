@@ -22,9 +22,7 @@ class HeadingConverter(Converter):
 	def replace(self, match):
 		level = len(match.group(1))
 		
-		return f"<h{level}>{match.group(1)}</h{len(level)>\n"
-
-class BoldItalicConverter(Converter):
+		return f"<h{level}>{match.group(1)}</h{level}>\n"
 
 
 class InlineConverter(Converter):
@@ -32,6 +30,10 @@ class InlineConverter(Converter):
 	def replace(self, match):
 		return f"<{self.tag}>{match.group(1)}<{self.tag}>\n"
 
-class BoldConverter(Converter):
+class BoldConverter(InlineConverter):
 	regex = re.compile(r"\*\*(.*?)\*\*")
 	tag  = "strong"
+
+class ItalicConverter(InlineConverter):
+	regex = re.compile(r"\*(.*?)\*")
+	tag  = "em"
