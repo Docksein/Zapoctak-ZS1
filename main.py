@@ -25,15 +25,33 @@ class HeadingConverter(Converter):
 		return f"<h{level}>{match.group(2)}</h{level}>"
 
 class Escapers(Converter):
-	regex = re.compile(r"\\\*|\\\`")
+	regex = re.compile(r"(\\\*)|(\\\`)")
 
-	def replace(self,match):
-		pass
+	def replace(self, match):
+		if match.group(0) == "\*":
+			return f"&#42;"
+		else:
+			return f"&#96;"
+
+class HorizontalRuleConverter(Converter):
+	regex = re.compile(r"\*\*\*|---")
+
+	def replace(self, match):
+		return f"<hr>"
+
+class LinkConverter(Converter):
+	regex = re.compile(r"\[(.+?)\]\((.*)\)")
+
+	def reaplace(self, match):
+		print(match.group(1))
+		print(match.group(2))
+		print("piss")
+		return f"<a href='{match.group(1)}'>{match.group(2)}</a>"
 
 class CodeConverter(Converter):
-	regex = re.compile(r"`(.*?)`", flags=re.MULTILINE)
+	regex = re.compile(r"`(.*?)`", flags=re.DOTALL)
 
-	def replace(self,match):
+	def replace(self, match):
 		return f"<code>{match.group(1)}</code>"
 
 class InlineConverter(Converter):
@@ -49,5 +67,5 @@ class ItalicConverter(InlineConverter):
 	regex = re.compile(r"\*(.*?)\*")
 	tag  = "em"
 
-txt = "**gejming**"
-print(BoldConverter().convert(txt))
+txt = "[title](https://www.example.com)"
+print(LinkConverter().convert(txt))
