@@ -24,6 +24,23 @@ class HeadingConverter(Converter):
 		
 		return f"<h{level}>{match.group(2)}</h{level}>"
 
+class SyntaxElements(Converter):
+	regex = re.compile(r"(\*)|(\`)|(#)|(>)|(<)|(---)")
+
+	def replace(self, match):
+		if match.group(0) == "*":
+			return f"&#42;"
+		elif match.group(0) == "`":
+			return f"&#96;"
+		elif match.group(0) == "#":
+			return f"&#35;"
+		elif match.group(0) == "<":
+			return f"&lt;"
+		elif match.group(0) == ">":
+			return f"&gt;"
+		else:
+			return f"&#45;&#45;&#45;"
+
 class Escapers(Converter):
 	regex = re.compile(r"(\\\*)|(\\\`)")
 
@@ -56,18 +73,18 @@ class ImageConverter(Converter):
 		else:
 			return f'<img src="{match_group2}" alt="{match.group(1)}">'
 
+class CodeConverter(Converter):
+	regex = re.compile(r"`(.*?)`", flags=re.DOTALL)
+
+	def replace(self, match):
+		text = SyntaxElements().convert(match.group(1))
+		return f"<code>{text}</code>"
+
 class BlockQuoteConverter(Converter):
 	regex = re.compile(r"^>(.*)", flags=re.DOTALL)
 
 	def replace(self, match):
 		return f"<blockquote>{match.group(1)}</blockquote>"
-
-class CodeConverter(Converter):
-	regex = re.compile(r"`(.*?)`", flags=re.DOTALL)
-
-	def replace(self, match):
-		text = Escapers().convert(match.group(1))
-		return f"<code>{text}</code>"
 
 class InlineConverter(Converter):
 	
@@ -82,5 +99,11 @@ class ItalicConverter(InlineConverter):
 	regex = re.compile(r"\*(.*?)\*")
 	tag  = "em"
 
-txt = '''![The San Juan Mountains are beautiful!](/assets/images/san-juan-mountains.jpg "San Juan Mountains")'''
-print(ImageConverter().convert(txt))
+txt = '''
+<h1>piss</h1>
+
+`
+<h1>piss</h1>
+`
+'''
+print(CodeConverter().convert(txt))
