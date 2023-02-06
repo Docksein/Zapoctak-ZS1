@@ -40,19 +40,34 @@ class HorizontalRuleConverter(Converter):
 		return f"<hr>"
 
 class LinkConverter(Converter):
-	regex = re.compile(r"\[(.+?)\]\((.*)\)")
+	regex = re.compile(r"\[(.+?)\]\((.*?)\)", flags=re.MULTILINE)
 
-	def reaplace(self, match):
-		print(match.group(1))
-		print(match.group(2))
-		print("piss")
-		return f"<a href='{match.group(1)}'>{match.group(2)}</a>"
+	def replace(self, match):
+		return f"<a href='{match.group(2)}'>{match.group(1)}</a>"
+
+class ImageConverter(Converter):
+	regex = re.compile(r"\!\[(.+?)\]\((.*?)\)")
+
+	def replace(self, match):
+		title = re.search(r'".*?"', match.group(2))
+		match_group2 = re.sub(r'".*?"', "", match.group(2))
+		if title:
+			return f'<img src="{match.group(2)}" alt="{match.group(1)}" title = {title.group()}>'
+		else:
+			return f'<img src="{match_group2}" alt="{match.group(1)}">'
+
+class BlockQuoteConverter(Converter):
+	regex = re.compile(r"^>(.*)", flags=re.DOTALL)
+
+	def replace(self, match):
+		return f"<blockquote>{match.group(1)}</blockquote>"
 
 class CodeConverter(Converter):
 	regex = re.compile(r"`(.*?)`", flags=re.DOTALL)
 
 	def replace(self, match):
-		return f"<code>{match.group(1)}</code>"
+		text = Escapers().convert(match.group(1))
+		return f"<code>{text}</code>"
 
 class InlineConverter(Converter):
 	
@@ -67,5 +82,5 @@ class ItalicConverter(InlineConverter):
 	regex = re.compile(r"\*(.*?)\*")
 	tag  = "em"
 
-txt = "[title](https://www.example.com)"
-print(LinkConverter().convert(txt))
+txt = '''![The San Juan Mountains are beautiful!](/assets/images/san-juan-mountains.jpg "San Juan Mountains")'''
+print(ImageConverter().convert(txt))
