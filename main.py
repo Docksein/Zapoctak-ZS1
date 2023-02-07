@@ -85,7 +85,32 @@ class BlockQuoteConverter(Converter):
 
 	def replace(self, match):
 		match_group1 = re.sub(r'>', "", match.group(1))
-		return f"<blockquote>{match_group1}</blockquote>{match.group(2)}"
+		return f"<blockquote>\n{match_group1}</blockquote>\n{match.group(2)}"
+
+
+class ListItemsConverter(Converter):
+	regex = re.compile(r"(^\d\.(.*?)$)|(-(\s*.*?)$)", flags = re.MULTILINE)
+
+	def replace(self, match):
+		if match.group(2):
+			return f"<li>{match.group(2)}</li>"
+		else:
+			return f"<li>{match.group(4)}</li>"
+
+class OrderedListConverter(Converter):
+	regex = re.compile(r"^(\d\..*?)(^[^0-9])", flags=re.MULTILINE | re.DOTALL)
+
+	def replace(self, match):
+		match_group1 = ListItemsConverter().convert(match.group(1))
+		return f"<ol>\n{match_group1}</ol>\n{match.group(2)}"
+
+class UnorderedListConverter(Converter):
+	regex = re.compile(r"^(-.*?)(^[^-])", flags=re.MULTILINE | re.DOTALL)
+
+	def replace(self, match):
+		match_group1 = ListItemsConverter().convert(match.group(1))
+		return f"<ul>\n{match_group1}</ul>\n{match.group(2)}"
+
 
 class InlineConverter(Converter):
 	
@@ -100,14 +125,35 @@ class ItalicConverter(InlineConverter):
 	regex = re.compile(r"\*(.*?)\*")
 	tag  = "em"
 
-txt = '''> #### The quarterly results look great!
+txt = '''
+- Revenue was off the chart.
+- Profits were higher than ever.
+1. First item
+2. Second item
+3. Third item
+> #### The quarterly results look great!
 >
-> - Revenue was off the chart.
-> - Profits were higher than ever.
+
 >
 >  *Everything* is going according to **plan**.`
+1
 
->piss
-fag
 '''
-print(BlockQuoteConverter().convert(txt))
+converters = [
+	Escapers(),
+	OrderedListConverter(),
+	UnorderedListConverter(),
+	BlockQuoteConverter(),
+	LinkConverter(),
+	ImageConverter(),
+	HeadingConverter(),
+	HorizontalRuleConverter(),
+	BoldConverter(),
+	ItalicConverter()
+
+]
+
+for c in converters:
+	txt = c.convert(txt)
+
+print(txt)
