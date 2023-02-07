@@ -16,6 +16,9 @@ with open(sys.argv[1], 'r', encoding='utf8') as f:
 class Converter():
 
 	def convert(self, source):
+		"""
+		Konvertuje element dané třídy z markdownu do html
+		"""
 		return self.regex.sub(self.replace, source)
 
 	def replace(self, match):
