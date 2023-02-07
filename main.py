@@ -81,10 +81,11 @@ class CodeConverter(Converter):
 		return f"<code>{text}</code>"
 
 class BlockQuoteConverter(Converter):
-	regex = re.compile(r"^>(.*)", flags=re.DOTALL)
+	regex = re.compile(r"^>(.*?)(^[^>])", flags=re.MULTILINE | re.DOTALL)
 
 	def replace(self, match):
-		return f"<blockquote>{match.group(1)}</blockquote>"
+		match_group1 = re.sub(r'>', "", match.group(1))
+		return f"<blockquote>{match_group1}</blockquote>{match.group(2)}"
 
 class InlineConverter(Converter):
 	
@@ -99,11 +100,14 @@ class ItalicConverter(InlineConverter):
 	regex = re.compile(r"\*(.*?)\*")
 	tag  = "em"
 
-txt = '''
-<h1>piss</h1>
+txt = '''> #### The quarterly results look great!
+>
+> - Revenue was off the chart.
+> - Profits were higher than ever.
+>
+>  *Everything* is going according to **plan**.`
 
-`
-<h1>piss</h1>
-`
+>piss
+fag
 '''
-print(CodeConverter().convert(txt))
+print(BlockQuoteConverter().convert(txt))
