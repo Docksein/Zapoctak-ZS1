@@ -138,7 +138,7 @@ class OrderedListConverter(Converter):
 	"""
 	Konvertuje očíslovaný seznam z markdownu na html <ul>
 	"""
-	regex = re.compile(r"^(\d*\..*?)(^[^\d]|\Z)", flags=re.MULTILINE | re.DOTALL)
+	regex = re.compile(r"^(\d*\..*?)(^[^\d.]|\Z)", flags=re.MULTILINE | re.DOTALL)
 
 	def replace(self, match):
 		match_group1 = ListItemsConverter().convert(match.group(1))
