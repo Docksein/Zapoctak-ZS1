@@ -1,13 +1,18 @@
 import re
 import sys
-"""
+
 if len(sys.argv) < 2:
 	print("Chybí argument markdown souboru")
 	sys.exit(1)	
+elif sys.argv[1][-3:] != ".md":
+	print("Argument není markdown soubor")
+	sys.exit9(1)
+else:
+	html_soubor = open(f"{sys.argv[1][:-3]}.html", "w", encoding='utf8')
 
 with open(sys.argv[1], 'r', encoding='utf8') as f:
 	txt = f.read()
-"""
+
 class Converter():
 
 	def convert(self, source):
@@ -169,25 +174,7 @@ class ItalicConverter(InlineConverter):
 	regex = re.compile(r"\*(.*?)\*")
 	tag  = "em"
 
-txt = '''
-1. First item
-2. Second item
-3. Third item
-> #### The quarterly results look great!
->
 
->
->  *Everything* is going according to `**plan**.`
-
-- Revenue was off the chart.
-- Profits were higher than ever.
-1. First item
-20. Second item
-Third item
-
-
-piss
-'''
 converters = [
 	Escapers(),
 	OrderedListConverter(),
@@ -206,4 +193,7 @@ converters = [
 for c in converters:
 	txt = c.convert(txt)
 
-print(txt)
+html_soubor.write(txt)
+
+f.close()
+html_soubor.close()
