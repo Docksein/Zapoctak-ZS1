@@ -115,7 +115,7 @@ class CodeConverter(Converter):
 # Třídy na konvertování bloků textu nebo seznamu
 class BlockQuoteConverter(Converter):
 	"""
-	Konvertuje markdown blok citace, dokud začíná řádek znakem > na html <blockquote>
+	Konvertuje markdown blok citace, dokud začíná řádek znakem >, na html <blockquote>
 	"""
 
 	regex = re.compile(r"^>(.*?)(^[^>]|\Z)", flags=re.MULTILINE | re.DOTALL)
