@@ -68,6 +68,16 @@ class HeadingConverter(Converter):
 		
 		return f"<h{level}>{match.group(2)}</h{level}>"
 
+#Třída na konvertování paragrafů
+class ParagraphConverter(Converter):
+	"""
+	Konvertuje markdown paragrafy ohraničené prázdnými řádky na html <p>
+	"""
+	regex = re.compile(r"^\s*\n(^[^<])(.*?)(^\s*$|^<)", flags=re.MULTILINE | re.DOTALL)
+	
+	def replace(self, match):
+		return f"<p>{match.group(1)}{match.group(2)}</p>\n{match.group(3)}"
+
 # Třída na konvertování horizontálních čar
 class HorizontalRuleConverter(Converter):
 	"""
@@ -183,6 +193,7 @@ converters = [
 	OrderedListConverter(),
 	UnorderedListConverter(),
 	BlockQuoteConverter(),
+	ParagraphConverter(),
 	CodeConverter(),
 	LinkConverter(),
 	ImageConverter(),
