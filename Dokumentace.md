@@ -31,7 +31,7 @@ Paragraf začíná a končí prázdným řádkem. Pokud chcete vytvořit paragra
 Pokud chcete citovat sekci, použijte \> na začátku řádku. Pokud chcete, aby citace měla více řádků, tak každý další řádek začněte dalším \>, dokud má citace pokračovat.
 | Markdown | Html | 
 |----------|------|
-| \>citace<br>\>přes několik řádků. | \<blockquote\> citace<br>přes několik řádků. \</blockquote\> |
+| \>citace<br>\>přes několik řádků. | \<blockquote\><br> citace<br>přes několik řádků.<br> \</blockquote\> |
 ### Seznamy
 
 ### Kód
