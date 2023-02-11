@@ -67,5 +67,13 @@ Pro přidání horizontální čáry, napiště do textu tři pomlčky nebo tři
 | \*\*\* | \<hr\> | 
 
 ### Kurzíva
+Pro označení části textu kurzívou, ohraničte daný text jednou hvězdou `*kurzivní text*`
+| Markdown | Html | 
+|----------|------|
+| \*Kurzivní text\*  | \<em\>Kurzivní text\</em\>  |
 
 ### Tučné písmo
+Pro označení části textu, ohraničte daný text dvěmi hvězdami `**tučný text**`
+| Markdown | Html | 
+|----------|------|
+| \*\*tučný text\*\*  | \<b\>tučný text\</b\>  |

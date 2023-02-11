@@ -178,7 +178,7 @@ class BoldConverter(InlineConverter):
 	Konvertuje tučně napsané písmo z **text** na <strong>text</strong>
 	"""
 	regex = re.compile(r"\*\*(.*?)\*\*")
-	tag  = "strong"
+	tag  = "b"
 
 class ItalicConverter(InlineConverter):
 	"""
