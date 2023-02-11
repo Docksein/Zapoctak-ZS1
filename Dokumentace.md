@@ -17,9 +17,9 @@ Program podporuje základní markdown syntaxi, která se řídí podle [Markdown
 Podobně jako v html, program podporuje 6 úrovní nadpisů.
 | Markdown | Html | 
 |----------|------|
-| \# Nadpis úrovně 1 | <h1> Nadpis úrovně 1 </h1> |
-| \#\# Nadpis úrovně 2 | <h2> Nadpis úrovně 2 </h2> |
-| \#\#\#\#\#\#  Nadpis úrovně 6 | <h6> Nadpis úrovně 6 </h6> |
+| \# Nadpis úrovně 1 | \<h1\> Nadpis úrovně 1 \</h1\> |
+| \#\# Nadpis úrovně 2 | \<h2\> Nadpis úrovně 2 \</h2\> |
+| \#\#\#\#\#\#  Nadpis úrovně 6 | \<h6\> Nadpis úrovně 6 \</h6\> |
 
 ### Paragrafy
 
