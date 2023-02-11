@@ -11,9 +11,17 @@ Program spustíte pomocí následujícího příkazu na příkazové řádce:
 
 Uživatelská dokumentace
 ---
-Program podporuje základní markdown syntaxi, která se řídí syntaxí podle [Markdown příručkové stránky](https://www.markdownguide.org/)
+Program podporuje základní markdown syntaxi, která se řídí podle [Markdown příručkové stránky](https://www.markdownguide.org/)
 
 ### Nadpisy
+Podobně jako v html, program podporuje 6 úrovní nadpisů.
+| Markdown | Html | 
+|----------|------|
+| \# Nadpis úrovně 1 | <h1> Nadpis úrovně 1 </h1> |
+| \#\# Nadpis úrovně 2 | <h2> Nadpis úrovně 2 </h2> |
+| \#\#\#\#\#\#  Nadpis úrovně 6 | <h6> Nadpis úrovně 6 </h6> |
+
+### Paragrafy
 
 ### Blockquote
 
