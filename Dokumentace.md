@@ -28,7 +28,10 @@ Paragraf začíná a končí prázdným řádkem. Pokud chcete vytvořit paragra
 | <br>jeden paragraf<br><br>druhý paragraf<br> |<br> \<p\>jeden paragraf\</p\><br><br> \<p\>druhý paragraf\</p\>|
 
 ### Blockquote
-
+Pokud chcete citovat sekci, použijte \> na začátku řádku. Pokud chcete, aby citace měla více řádků, tak každý další řádek začněte dalším \>, dokud má citace pokračovat.
+| Markdown | Html | 
+|----------|------|
+| \>citace<br>\>přes několik řádků. | \<blockquote\> citace<br>přes několik řádků. \</blockquote\> |
 ### Seznamy
 
 ### Kód
