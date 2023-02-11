@@ -25,7 +25,7 @@ Podobně jako v html, program podporuje 6 úrovní nadpisů. Pro vytvoření nad
 Paragraf začíná a končí prázdným řádkem. Pokud chcete vytvořit paragraf, je potřeba prázdný řádek vytvořit jak před paragrafem, tak i za ním. Paragraf může mít více řádků.
 | Markdown | Html | 
 |----------|------|
-| <br>jeden paragraf<br><br>druhý paragraf<br> | \<p\>jeden paragraf\</p\><br><br> \<p\>druhý paragraf\</p\>|
+| <br>jeden paragraf<br><br>druhý paragraf<br> |<br> \<p\>jeden paragraf\</p\><br><br> \<p\>druhý paragraf\</p\>|
 
 ### Blockquote
 
