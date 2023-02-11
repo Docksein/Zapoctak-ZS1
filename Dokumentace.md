@@ -46,17 +46,25 @@ Pro označení části textu jako kódu, lze text ohraničit zpětnými uvozovka
 | Markdown | Html | 
 |----------|------|
 | \` zde je kód \` | \<code\> zde je kód \</code\>|
+
 ### Odkazy
 Pro přidání odkazu do textu, napište název odkazu do hranatých úvozovek název odkazu `[Jméno]`a hned za to napište odkaz do kulatých uvozovek odkaz `(www.odkaz.cz>).`
 | Markdown | Html | 
 |----------|------|
 | \[Název\]\(www<span>.odkaz&period;cz</span>\) | \<a href="www<span>.odkaz&period;cz</span>"\>Název\</a\> |
+
 ### Obrázky
-Pro přidání obrázku do textu, napiště vykřičník `!` následovaný hranatými uvozovkami s alt textem `[alt text]` a hned za ním kulaté závorky s cestou k obrázku a nepovinně i název obrázku `(cesta "Název")`.
+Pro přidání obrázku do textu, napiště vykřičník `!` následovaný hranatými uvozovkami s alt textem `[alt text]` a hned za ním kulaté závorky s cestou k obrázku a nepovinně i název obrázku v dvojitých uvozovkách `(cesta "Název")`.
 | Markdown | Html | 
 |----------|------|
 | !\[alt text\]\(obrázek.jpg "Text k obrázku"\) | \<img src="obrázek.jpg" alt="alt text" title="Text k obrázku"\> |
+
 ### Horizontální čára
+Pro přidání horizontální čáry, napiště do textu tři pomlčky nebo tři hvězdy za sebou: `---` nebo `***`
+| Markdown | Html | 
+|----------|------|
+| \-\-\- | \<hr\> |
+| \*\*\* | \<hr\> | 
 
 ### Kurzíva
 
