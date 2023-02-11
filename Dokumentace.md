@@ -35,8 +35,10 @@ Pro citování sekce textu, použijte `>` na začátku řádku. Pokud chcete, ab
 ### Seznamy
 
 ### Kód
- 
-
+Pro označení části textu jako kódu, lze text ohraničit zpětnými uvozovkami `` ` ``.
+| Markdown | Html | 
+|----------|------|
+| \` zde je kód \` | \<code\> zde je kód \</code\>|
 ### Odkazy
 
 ### Obrázky
