@@ -25,13 +25,13 @@ Podobně jako v html, program podporuje 6 úrovní nadpisů. Pro vytvoření nad
 Paragraf začíná a končí prázdným řádkem. Pokud chcete vytvořit paragraf, je potřeba prázdný řádek vytvořit jak před paragrafem, tak i za ním. Paragraf může mít více řádků.
 | Markdown | Html | 
 |----------|------|
-| <br>jeden paragraf<br><br>druhý paragraf<br> |<br> \<p\>jeden paragraf\</p\><br><br> \<p\>druhý paragraf\</p\>|
+| jeden paragraf<br><br>druhý paragraf<br> |\<p\>jeden paragraf\</p\><br><br> \<p\>druhý paragraf\</p\>|
 
 ### Únikové znaky
 Pro vložení speciálních markdown znaků do textu, je nutné před nimi použít zpětné lomítko `\`.
 Jsou to znaky:
-- \* hvězda
-- \` zpětné uvozovky
+- \* - hvězda
+- \` - zpětné uvozovky
 
 ### Blockquote
 Pro citování sekce textu, použijte `>` na začátku řádku. Pokud chcete, aby citace měla více řádků, tak každý další řádek začněte dalším `>`, dokud má citace pokračovat. 
