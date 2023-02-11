@@ -47,7 +47,10 @@ Pro označení části textu jako kódu, lze text ohraničit zpětnými uvozovka
 |----------|------|
 | \` zde je kód \` | \<code\> zde je kód \</code\>|
 ### Odkazy
-
+Pro přidání odkazu do textu, napište název odkazu do hranatých úvozovek \[ Jméno \] a hned za to napište odkaz do kulatých uvozovek \(www.odkaz.cz\).
+| Markdown | Html | 
+|----------|------|
+| \[Název\]\(www.odkaz.cz\) | \<a href="www.odkaz.cz"\>Název\</a\> |
 ### Obrázky
 
 ### Horizontální čára
