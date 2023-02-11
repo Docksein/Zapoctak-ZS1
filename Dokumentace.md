@@ -14,14 +14,18 @@ Uživatelská dokumentace
 Program podporuje základní markdown syntaxi, která se řídí podle [Markdown příručkové stránky](https://www.markdownguide.org/)
 
 ### Nadpisy
-Podobně jako v html, program podporuje 6 úrovní nadpisů.
+Podobně jako v html, program podporuje 6 úrovní nadpisů. Pro vytvoření nadpisu, začněte řádek jedním až šesti \#. Celý řádek se počítá jako nadpis.
 | Markdown | Html | 
 |----------|------|
 | \# Nadpis úrovně 1 | \<h1\> Nadpis úrovně 1 \</h1\> |
 | \#\# Nadpis úrovně 2 | \<h2\> Nadpis úrovně 2 \</h2\> |
-| \#\#\#\#\#\#  Nadpis úrovně 6 | \<h6\> Nadpis úrovně 6 \</h6\> |
+| \#\#\#\#\#\# Nadpis úrovně 6 | \<h6\> Nadpis úrovně 6 \</h6\> |
 
 ### Paragrafy
+Paragraf začíná a končí prázdným řádkem. Pokud chcete vytvořit paragraf, je potřeba prázdný řádek vytvořit jak před paragrafem, tak i za ním. Paragraf může mít více řádků.
+| Markdown | Html | 
+|----------|------|
+| <br>jeden paragraf<br>druhý paragraf<br> | \<p\>jeden paragraf\</p\><br> \<p\>druhý paragraf\</p\|
 
 ### Blockquote
 
