@@ -86,4 +86,5 @@ Samotné znaky nahradí příslušnými html ekvivalenty a zbytek textu zachová
 Pro regulární výrazy je použita knihovna re, která je do pythonu přímo zabudovaná. 
 
 Program se dělí na třídy, která každá konvertuje jeden syntaktický element. 
-Každá třída dědí z abstraktní třídy `Converter()`, která definuje metodu `convert()`, která jako argument bere daný text, který chceme konvertovat.
+Každá třída dědí z abstraktní třídy `Converter()`, která definuje metodu `convert()`, která jako argument bere daný text, který chceme konvertovat.  
+Všechny konkrétní třídy musí nadefinovat proměnnou `regex`, do které se přiřadí funkce `re.compile()`, kde určíme vzorec, který bychom měli v textu najít.

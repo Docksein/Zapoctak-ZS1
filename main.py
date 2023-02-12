@@ -14,7 +14,9 @@ with open(sys.argv[1], 'r', encoding='utf8') as f:
 	txt = f.read()
 
 class Converter():
-
+	"""
+	Abstraktní třída, kterou dědí všechny další třídy.
+	"""
 	def convert(self, source):
 		"""
 		Konvertuje element dané třídy z markdownu do html
@@ -134,38 +136,38 @@ class BlockQuoteConverter(Converter):
 		match_group1 = re.sub(r'>', "", match.group(1))
 		return f"<blockquote>\n{match_group1}</blockquote>\n{match.group(2)}"
 
+class NestedListConverter(Converter):
+    regex = re.compile(r"^(\t*)((\d+)\.|\s?-)\s*(.*)$")
 
-class ListItemsConverter(Converter):
-	"""
-	Konvertuje jednotlivé položky v seznamech na <li>položka</li>
-	"""
-	regex = re.compile(r"^\d*\.(.*?)$|-(\s*.*?)$", flags = re.MULTILINE)
+    def convert(self, source):
+        res = []
+        levels = []
 
-	def replace(self, match):
-		if match.group(1):
-			return f"<li>{match.group(1)}</li>"
-		else:
-			return f"<li>{match.group(2)}</li>"
+        for line in source.split("\n"):
+            match = self.regex.match(line)
+            if match:
+                if match.group(3):
+                    tag = "ol"
+                else:
+                    tag = "ul"
 
-class OrderedListConverter(Converter):
-	"""
-	Konvertuje očíslovaný seznam z markdownu na html <ul>
-	"""
-	regex = re.compile(r"^(\d*\..*?)(^[^\d.]|\Z)", flags=re.MULTILINE | re.DOTALL)
+                this_level = len(match.group(1))+1
 
-	def replace(self, match):
-		match_group1 = ListItemsConverter().convert(match.group(1))
-		return f"<ol>\n{match_group1}</ol>\n{match.group(2)}"
+                if this_level > len(levels):
+                    levels.append(tag)
+                    res.append("<" + tag + ">")
+                elif this_level < len(levels):
+                    for i in range(len(levels) - this_level):
+                        res.append("</"+levels.pop()+">")
 
-class UnorderedListConverter(Converter):
-	"""
-	Konvertuje neočíslovaný seznam z markdownu na html <ol>
-	"""
-	regex = re.compile(r"^(-.*?)(^[^-]|\Z)", flags=re.MULTILINE | re.DOTALL)
+                res.append("<li>" + match.group(4) + "</li>")
+            else:
+                for i in range(len(levels)):
+                    res.append("</"+levels.pop()+">")
+                res.append(line)
 
-	def replace(self, match):
-		match_group1 = ListItemsConverter().convert(match.group(1))
-		return f"<ul>\n{match_group1}</ul>\n{match.group(2)}"
+        return "\n".join(res)
+
 
 # Třídy na konvertování elementů uprostřed textu
 class InlineConverter(Converter):
@@ -177,21 +179,20 @@ class BoldConverter(InlineConverter):
 	"""
 	Konvertuje tučně napsané písmo z **text** na <strong>text</strong>
 	"""
-	regex = re.compile(r"\*\*(.*?)\*\*")
+	regex = re.compile(r"\*\*([^\*]+)\*\*")
 	tag  = "b"
 
 class ItalicConverter(InlineConverter):
 	"""
 	Konvertuje písmo napsané kurzívou z *text* na <em>text</em>
 	"""
-	regex = re.compile(r"\*(.*?)\*")
+	regex = re.compile(r"\*([^\*]+)\*")
 	tag  = "em"
 
 
 converters = [
 	Escapers(),
-	OrderedListConverter(),
-	UnorderedListConverter(),
+	NestedListConverter(),
 	BlockQuoteConverter(),
 	ParagraphConverter(),
 	CodeConverter(),
@@ -200,7 +201,8 @@ converters = [
 	HeadingConverter(),
 	HorizontalRuleConverter(),
 	BoldConverter(),
-	ItalicConverter()
+	ItalicConverter(),
+	BoldConverter()
 
 ]
 
