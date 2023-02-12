@@ -8,6 +8,7 @@ Program potřebuje:
 
 Program spustíte pomocí následujícího příkazu na příkazové řádce:
 `python3 main.py (daný markdown soubor)`
+A vytvoří vám konverovaný soubor se stejným názevem a příponou ".html"
 
 Uživatelská dokumentace
 ---
@@ -80,3 +81,9 @@ Pro označení části textu, ohraničte daný text dvěmi hvězdami `**tučný 
 
 Programátorská dokumentace
 ---
+Program používá regulární výrazy, aby našel v textu určité syntaktické znaky popisované výše, které postupně převede.
+Samotné znaky nahradí příslušnými html ekvivalenty a zbytek textu zachová.  
+Pro regulární výrazy je použita knihovna re, která je do pythonu přímo zabudovaná. 
+
+Program se dělí na třídy, která každá konvertuje jeden syntaktický element. 
+Každá třída dědí z abstraktní třídy `Converter()`, která definuje metodu `convert()`, která jako argument bere daný text, který chceme konvertovat.
