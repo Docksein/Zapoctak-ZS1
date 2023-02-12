@@ -137,36 +137,40 @@ class BlockQuoteConverter(Converter):
 		return f"<blockquote>\n{match_group1}</blockquote>\n{match.group(2)}"
 
 class NestedListConverter(Converter):
-    regex = re.compile(r"^(\t*)((\d+)\.|\s?-)\s*(.*)$")
+	"""
+	Konvertuje 
+	"""
+	
+	regex = re.compile(r"^(\t*)((\d+)\.|\s?-)\s*(.*)$")
 
-    def convert(self, source):
-        res = []
-        levels = []
+	def convert(self, source):
+		res = []
+		levels = []
 
-        for line in source.split("\n"):
-            match = self.regex.match(line)
-            if match:
-                if match.group(3):
-                    tag = "ol"
-                else:
-                    tag = "ul"
+		for line in source.split("\n"):
+			match = self.regex.match(line)
+			if match:
+				if match.group(3):
+					tag = "ol"
+				else:
+					tag = "ul"
 
-                this_level = len(match.group(1))+1
+				this_level = len(match.group(1))+1
 
-                if this_level > len(levels):
-                    levels.append(tag)
-                    res.append("<" + tag + ">")
-                elif this_level < len(levels):
-                    for i in range(len(levels) - this_level):
-                        res.append("</"+levels.pop()+">")
+				if this_level > len(levels):
+					levels.append(tag)
+					res.append("<" + tag + ">")
+				elif this_level < len(levels):
+					for i in range(len(levels) - this_level):
+						res.append("</"+levels.pop()+">")
 
-                res.append("<li>" + match.group(4) + "</li>")
-            else:
-                for i in range(len(levels)):
-                    res.append("</"+levels.pop()+">")
-                res.append(line)
+				res.append("<li>" + match.group(4) + "</li>")
+			else:
+				for i in range(len(levels)):
+					res.append("</"+levels.pop()+">")
+				res.append(line)
 
-        return "\n".join(res)
+		return "\n".join(res)
 
 
 # Třídy na konvertování elementů uprostřed textu
