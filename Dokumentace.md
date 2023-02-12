@@ -101,3 +101,5 @@ Funkce používá zásobník na uložení úrovní vnoření.
 Každá úroveň seznamu si uloží tag, zda-li budou její jednotlivé odrážky očíslované nebo neočíslované a pokud se úroveň sníží, tak ze zásobníku vezme tag a ukončí danou úroveň seznamu.
 Každý konvertovaný řádek se zapisuje do pythonového seznamu, který se pak sjednotí na jeden řetězec, který `convert()` vrací a regexovou funkci `re.sub()` již nepoužívá.
 
+Jednotlivé třídy, které chceme využít ke konvertování textu se zapisují na konec souboru do seznamu s názvem `converters`.
+Pomocí for loopu poté projde všechny třídy seznamu a jedna po druhé spustí funkci `convert()` na daný soubor. Je potřeba dávat pozor na pořadí tříd, aby některá syntaxe nebyla špatně překonvertována, pokud se některé části kryjí.
