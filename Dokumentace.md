@@ -45,7 +45,7 @@ Program podporuje seznamy jak neočíslované pomocí pomlčky `-`, tak i očís
 
 | Markdown | Html | 
 |----------|------|
-| \-neočíslovaný <br>\-seznam | \<ul\><br> \<li\>neočíslovaný\</li\><br>\<li\>seznam\</li\><br>\<ul\>|
+| \- neočíslovaný <br>\- seznam | \<ul\><br> \<li\>neočíslovaný\</li\><br>\<li\>seznam\</li\><br>\<ul\>|
 | 1.očíslovaný <br>2.seznam | \<ol\><br> \<li\>očíslovaný\</li\><br>\<li\>seznam\</li\><br>\<ol\>|
 
 ### Kód
