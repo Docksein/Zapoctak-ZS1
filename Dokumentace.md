@@ -31,8 +31,9 @@ Paragraf začíná a končí prázdným řádkem. Pokud chcete vytvořit paragra
 ### Únikové znaky
 Pro vložení speciálních markdown znaků do textu, je nutné před nimi použít zpětné lomítko `\`.
 Jsou to znaky:
-- \* - hvězda
-- \` - zpětné uvozovky
+- \\* - hvězda
+- \\` - zpětné uvozovky
+- \\- - pomlčka
 
 ### Blockquote
 Pro citování sekce textu, použijte `>` na začátku řádku. Pokud chcete, aby citace měla více řádků, tak každý další řádek začněte dalším `>`, dokud má citace pokračovat. 
@@ -42,6 +43,7 @@ Blockquote také podporuje markdown syntaxi uvnitř daných bloků.
 | \>citace<br>\>přes několik řádků. | \<blockquote\><br> citace<br>přes několik řádků.<br> \</blockquote\> |
 ### Seznamy
 Program podporuje seznamy jak neočíslované pomocí pomlčky `-`, tak i očíslované. Očíslované seznamy mohou mít libovolné čísla, ovšem zobrazí se běžně od jedné.
+Seznamy do sebe mohou být vnořené.
 
 | Markdown | Html | 
 |----------|------|
