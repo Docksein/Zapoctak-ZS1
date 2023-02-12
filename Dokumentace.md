@@ -92,6 +92,12 @@ Samotné znaky nahradí příslušnými html ekvivalenty a zbytek textu zachová
 Pro regulární výrazy je použita knihovna re, která je do pythonu přímo zabudovaná. 
 
 Program se dělí na třídy, která každá konvertuje jeden syntaktický element. 
-Každá třída dědí z abstraktní třídy `Converter()`, která definuje metodu `convert()`, která jako argument bere daný text, který chceme konvertovat.  
+Každá třída dědí z abstraktní třídy `Converter()`, která definuje metodu `convert()`, která jako argument bere daný text, který chceme konvertovat a pomocí funkce `re.sub()` konvertuje text.  
 Všechny konkrétní třídy musí nadefinovat proměnnou `regex`, do které se přiřadí funkce `re.compile()`, kde určíme vzorec, který bychom měli v textu najít.  
 Funkce `replace()` pak vrací string, kterým chceme nahradit markdownový ekvivalent.
+
+Třída, která vyžadovala složitější úpravy je `NestedListConverter()`, která měnila funkci `convert()`. Funkce projíždí text řádek po řádce a hledá regulární výraz seznamu.
+Funkce používá zásobník na uložení úrovní vnoření.
+Každá úroveň seznamu si uloží tag, zda-li budou její jednotlivé odrážky očíslované nebo neočíslované a pokud se úroveň sníží, tak ze zásobníku vezme tag a ukončí danou úroveň seznamu.
+Každý konvertovaný řádek se zapisuje do pythonového seznamu, který se pak sjednotí na jeden řetězec, který `convert()` vrací a regexovou funkci `re.sub()` již nepoužívá.
+
