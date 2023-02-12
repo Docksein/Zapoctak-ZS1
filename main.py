@@ -51,13 +51,15 @@ class Escapers(Converter):
 	"""
 	převádí zalomené znaky na html symboly
 	"""
-	regex = re.compile(r"(\\\*)|(\\\`)|(\\\-)")
+	regex = re.compile(r"(\\\*)|(\\\`)|(\\\-)|(\\\>)")
 
 	def replace(self, match):
 		if match.group(0) == "\*":
 			return f"&#42;"
 		elif match.group(0) == "\-":
 			return f"&#45;"
+		elif  match.group(0) == "\>":
+			return f"&#62;"
 		else:
 			return f"&#96;"
 #Třída na konvertování nadpisů

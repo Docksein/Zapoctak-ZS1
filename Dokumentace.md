@@ -34,6 +34,7 @@ Jsou to znaky:
 - \\* - hvězda
 - \\` - zpětné uvozovky
 - \\- - pomlčka
+- \\> - větší než
 
 ### Blockquote
 Pro citování sekce textu, použijte `>` na začátku řádku. Pokud chcete, aby citace měla více řádků, tak každý další řádek začněte dalším `>`, dokud má citace pokračovat. 
