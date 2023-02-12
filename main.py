@@ -78,7 +78,7 @@ class ParagraphConverter(Converter):
 	regex = re.compile(r"^\s*\n(^[^<])(.*?)(^\s*$|^<)", flags=re.MULTILINE | re.DOTALL)
 	
 	def replace(self, match):
-		return f"<p>{match.group(1)}{match.group(2)}</p>\n{match.group(3)}"
+		return f"<p>\n{match.group(1)}{match.group(2)}</p>\n{match.group(3)}"
 
 # Třída na konvertování horizontálních čar
 class HorizontalRuleConverter(Converter):
@@ -138,10 +138,10 @@ class BlockQuoteConverter(Converter):
 
 class NestedListConverter(Converter):
 	"""
-	Konvertuje 
+	Konvertuje seznamy neočíslované - a očíslované 1. na <ul> a <ol>
 	"""
 	
-	regex = re.compile(r"^(\t*)((\d+)\.|\s?-)\s*(.*)$")
+	regex = re.compile(r"^(\t*)((\d+)\.|\s?-)\s*(.*)$", flags= re.MULTILINE)
 
 	def convert(self, source):
 		res = []
@@ -195,10 +195,10 @@ class ItalicConverter(InlineConverter):
 
 
 converters = [
-	Escapers(),
+	Escapers(),	
 	BlockQuoteConverter(),
-	ParagraphConverter(),
 	NestedListConverter(),
+	ParagraphConverter(),
 	CodeConverter(),
 	LinkConverter(),
 	ImageConverter(),

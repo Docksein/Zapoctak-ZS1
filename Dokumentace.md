@@ -46,7 +46,7 @@ Program podporuje seznamy jak neočíslované pomocí pomlčky `-`, tak i očís
 | Markdown | Html | 
 |----------|------|
 | \- neočíslovaný <br>\- seznam | \<ul\><br> \<li\>neočíslovaný\</li\><br>\<li\>seznam\</li\><br>\<ul\>|
-| 1.očíslovaný <br>2.seznam | \<ol\><br> \<li\>očíslovaný\</li\><br>\<li\>seznam\</li\><br>\<ol\>|
+| 1. očíslovaný <br>2. seznam | \<ol\><br> \<li\>očíslovaný\</li\><br>\<li\>seznam\</li\><br>\<ol\>|
 
 ### Kód
 Pro označení části textu jako kódu, lze text ohraničit zpětnými uvozovkami `` ` ``. Všechny speciální markdown znaky jsou automaticky konvertovány na html kódové znaky a nemusí se používat zpětné lomítko.
@@ -94,4 +94,4 @@ Pro regulární výrazy je použita knihovna re, která je do pythonu přímo za
 Program se dělí na třídy, která každá konvertuje jeden syntaktický element. 
 Každá třída dědí z abstraktní třídy `Converter()`, která definuje metodu `convert()`, která jako argument bere daný text, který chceme konvertovat.  
 Všechny konkrétní třídy musí nadefinovat proměnnou `regex`, do které se přiřadí funkce `re.compile()`, kde určíme vzorec, který bychom měli v textu najít.  
-Funkce `replace()` pak vrací string, kterým chceme nahradit
+Funkce `replace()` pak vrací string, kterým chceme nahradit markdownový ekvivalent.
