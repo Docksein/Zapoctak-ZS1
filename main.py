@@ -196,17 +196,17 @@ class ItalicConverter(InlineConverter):
 
 converters = [
 	Escapers(),
-	NestedListConverter(),
 	BlockQuoteConverter(),
 	ParagraphConverter(),
+	NestedListConverter(),
 	CodeConverter(),
 	LinkConverter(),
 	ImageConverter(),
 	HeadingConverter(),
-	HorizontalRuleConverter(),
 	BoldConverter(),
 	ItalicConverter(),
-	BoldConverter()
+	BoldConverter(),
+	HorizontalRuleConverter(),
 
 ]
 
