@@ -44,7 +44,7 @@ Blockquote také podporuje markdown syntaxi uvnitř daných bloků.
 | \>citace<br>\>přes několik řádků. | \<blockquote\><br> citace<br>přes několik řádků.<br> \</blockquote\> |
 ### Seznamy
 Program podporuje seznamy jak neočíslované pomocí pomlčky `-`, tak i očíslované. Očíslované seznamy mohou mít libovolné čísla, ovšem zobrazí se běžně od jedné.
-Seznamy do sebe mohou být vnořené.
+Seznamy do sebe mohou být vnořené, seznam je možné vnořit pomocí tabulátoru.
 
 | Markdown | Html | 
 |----------|------|

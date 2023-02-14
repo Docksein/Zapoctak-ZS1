@@ -117,6 +117,17 @@ class ImageConverter(Converter):
 			return f'<img src="{match.group(2)}" alt="{match.group(1)}" title = {title.group()}>'
 		else:
 			return f'<img src="{match_group2}" alt="{match.group(1)}">'
+
+class NewLineConverter(Converter):
+	"""
+	Přidá na koncích řádků <br>.
+	"""
+	regex = re.compile(r"(.*?$)", flags=re.MULTILINE)
+
+	def replace(self, match):
+		return f"{match.object(0)}<br>"
+
+
 #Třída na konvertování kódu
 class CodeConverter(Converter):
 	"""
@@ -126,6 +137,7 @@ class CodeConverter(Converter):
 
 	def replace(self, match):
 		text = SyntaxElements().convert(match.group(1))
+		text = re.sub(r"\n", "<br>\n", text)
 		return f"<code>{text}</code>"
 
 # Třídy na konvertování bloků textu nebo seznamu
